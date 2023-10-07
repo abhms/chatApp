@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #032037;
+    color: #fff;
+
+}
+.chatKaro{
+    color:#ffffff !important;
+    font-size: 30px !important;
+    text-decoration: none !important
+}
+
+.container {
+    margin-top: 120px !important;
+    padding: 2rem;
+}
+
+.background-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 5rem;
+    font-weight: bold;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+}
+
+.sign-in-button {
+    background-color: #FFA500;
+    color: #fff;
+}
+
+.homeImg {
+    width: 430px;
+    height: 454px
+}
+
+.Navbar-Color{
+    background-color: #010910;
+
+}
+/* styles.css */
+.Navbar-Color {
+    background: #032037;
+  }
+  
+  .chatKaro {
+    background: linear-gradient(45deg, #F36F45 50%, #fff 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  .chatfire {
+    display: inline-block;
+    background: linear-gradient(45deg, #F36F45 50%, #fff 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
