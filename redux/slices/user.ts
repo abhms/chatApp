@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const order = createSlice({
+export const user = createSlice({
   name: 'user', 
   initialState: {
     users:[],
@@ -14,6 +14,6 @@ export const order = createSlice({
   },
 });
 
-export const {setUsers} = order.actions;
+export const {setUsers} = user.actions;
 
-export default order.reducer;
+export default user.reducer;

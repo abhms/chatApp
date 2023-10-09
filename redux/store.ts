@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import orderReducer from './slices/user';
+import userReducer from './slices/user';
 
 const persistConfigOrder = {
   key: 'user',
@@ -9,11 +9,11 @@ const persistConfigOrder = {
 };
 
 
-const persistedOrderReducer = persistReducer(persistConfigOrder, orderReducer);
+const persisteduserReducer = persistReducer(persistConfigOrder, userReducer);
 
 const store = configureStore({
   reducer: {
-    order: persistedOrderReducer,
+    user: persisteduserReducer,
   },
 });
 

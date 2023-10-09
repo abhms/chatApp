@@ -6,7 +6,7 @@ import { Button } from '@mui/material';
 import Navbar from '@/components/Navbar';
 
 async function signIn(email: string, password: string) {
-    const response = await fetch('/api/signin', {
+    const response = await fetch('/api/auth/signin', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ const signin: React.FC = () => {
         e.preventDefault();
         const success = await signIn(email, password);
         if (success) {
-            router.push('/');
+            router.push('/chat');
         }
     }
     return (
@@ -82,7 +82,7 @@ const signin: React.FC = () => {
                     </button>
                 </form>
                 <p className="mt-2 text-xs text-center text-gray-700" > </p>
-                    New to SHOPNOW ?{' '}
+                    New to ChatFire ?{' '}
                     <Link href="/auth/signup">
                         <Button variant="contained" color="primary" fullWidth >
                             Sign Up

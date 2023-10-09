@@ -10,7 +10,7 @@ export default async function signupHandler(
   res: NextApiResponse
 ) {
   try {
-    const { firstname,lastname, email, password } = req.body;
+    const { firstname,lastname, email, password ,fileUrl} = req.body;
 
     const match = await User.findOne({ email });
     if (match) {
@@ -25,7 +25,7 @@ export default async function signupHandler(
       lastname,
       email,
       password: hash,
-      seller:false
+      profilePic:fileUrl
     });
 
     await newUser.save();
