@@ -43,29 +43,37 @@ img {
   height: 454px
 }
 
-.Navbar-Color {
-  background-color: #010910;
 
-}
 
 /* styles.css */
 .Navbar-Color {
-  background: #032037;
+  background: #032037 !important;
 }
 
+
+.chatfire {
+  letter-spacing: -5px !important; /* Adjust letter spacing as needed */
+  color: white !important; /* Set your desired text color */
+  font-weight: bold !important; /* Optionally set font weight */
+  text-decoration: none !important; /* Remove text decoration for the link */
+}
+
+.chatfire:hover {
+  text-decoration: underline !important; /* Add underline on hover if needed */
+}
 .chatKaro {
-  background: linear-gradient(45deg, #F36F45 50%, #fff 50%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+  background: linear-gradient(45deg, #F36F45 50%, #fff 50%) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  color: transparent !important;
 }
 
 .chatfire {
-  display: inline-block;
-  background: linear-gradient(45deg, #F36F45 50%, #fff 50%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+  display: inline-block !important;
+  background: linear-gradient(45deg, #F36F45 50%, #fff 50%) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  color: transparent !important;
 }
 
 .App {
@@ -98,7 +106,7 @@ img {
 
 .sidebar {
   margin-left: 20px;
-  width: 250px;
+  width: 22.5rem;
   background-color: #eae6df;
   padding: 20px;
 }
@@ -162,6 +170,7 @@ img {
   width: 25rem;
   height: 40rem;
   margin: 20px;
+  margin-top: -6px;
 }
 
 .user-avatar {
@@ -209,12 +218,62 @@ img {
   margin-right: 16rem;
 }
 .profiletext{
-  color: black;
-  margin-right: 7rem;
-  margin-top: -2.2rem;
+  color: black !important;
+  margin-right: 7rem !important;
+  margin-top: -2.2rem !important;
 }
 
 .saveButton{
   margin-top: 15px;
   right: 1px;
+}
+.round-image-chat-button{
+  background-color: #eae6df !important;
+  width: 400px;
+  height: 100px;
+  margin-left: 20px !important;
+}
+.round-image-chat {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: -291px;
+}
+
+/*chat-css*/
+/* chat.css */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px; /* Adjust as needed */
+  margin: 0 auto;
+}
+
+.message {
+  border-radius: 8px;
+  padding: 8px 16px;
+  margin: 4px;
+  max-width: 70%; /* Adjust as needed */
+  word-wrap: break-word;
+}
+
+.sent-message {
+  align-self: flex-end;
+  background-color: #007bff; /* Your sent message background color */
+  color: #fff; /* Your sent message text color */
+}
+
+.received-message {
+  align-self: flex-start;
+  background-color: #f0f0f0; /* Your received message background color */
+  color: #333; /* Your received message text color */
+}
+/* chat-container.css */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px; /* Adjust as needed */
+  margin: 0 auto;
+  align-self: flex-end; /* Align the chat container to the right */
 }

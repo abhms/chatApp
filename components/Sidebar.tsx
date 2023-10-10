@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Chat from '../components/Chat';
 
 const Sidebar = () => {
   const aa = [
@@ -38,6 +39,9 @@ const Sidebar = () => {
           <p>Image: {selectedUser.img}</p>
         </div>
       )}
+      <div className='chat-container'>
+      <Chat/>
+      </div>
     </div>
   );
 };

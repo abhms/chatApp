@@ -1,40 +1,34 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import User from '../../../models/Users';
+import bcrypt from 'bcrypt';
+import jwt, { Secret } from "jsonwebtoken";
 
-
-const secretKey = process.env.JWT_SECRET!; 
-
-export default async function signupHandler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
-    const { firstname,lastname, email, password } = req.body;
+    const { email, password } = req.body;
 
-    const match = await User.findOne({ email });
-    if (match) {
-      return res.status(409).json({message:'User already exists'});
+    console.log(req.body,"resss");
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ error: 'Incorrrect Email Address' });
     }
 
-    const saltRounds = 10;
-    const hash = await bcrypt.hash(password, saltRounds);
+    const passwordMatch = await bcrypt.compare(password, user.password);
 
-    const newUser = new User({
-      firstname,
-      lastname,
-      email,
-      password: hash,
-      seller:false
+    if (!passwordMatch) {
+      return res.status(401).json({ error: 'Incorrrect password' });
+    }
+
+    
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET!, {
+      expiresIn: '8h', 
     });
 
-    await newUser.save();
-    const token = jwt.sign({  userId: newUser._id}, secretKey, {
-      expiresIn: '24h',
-    });
-   
-    res.status(200).json({ message: 'User created successfully' ,token});
+    console.log(token,"tototoo");
+    res.status(200).json({ message: 'You are now login' ,token});
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: 'An internal server error occurred' });

@@ -29,11 +29,11 @@ const signin: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter();
-
+    console.log(email,"eeeee");
     useEffect(() => {
         const localToken = localStorage.getItem('token');
         if (localToken) {
-            router.push('/');
+            router.push('/chat');
         }
     }, [router]);
 
@@ -57,7 +57,7 @@ const signin: React.FC = () => {
                         <input
                             type="email"
                             id="email"
-                            className="w-full border border-gray-300 rounded px-3 py-2"
+                            className="w-full border border-gray-300 rounded px-3 py-2 text-gray-800"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
@@ -69,7 +69,7 @@ const signin: React.FC = () => {
                         <input
                             type="password"
                             id="password"
-                            className="w-full border border-gray-300 rounded px-3 py-2"
+                            className="w-full border border-gray-300 rounded px-3 py-2 text-gray-800"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />

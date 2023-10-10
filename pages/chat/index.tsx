@@ -6,8 +6,11 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import { setUsers } from '../../redux/slices/user';
 import { store } from "../../redux/store";
+import showAlert from '../../utils/swal';
+import { useSelector } from 'react-redux';
 
 const chat = () => {
+    const { users } = useSelector((state: any) => state.user);
     const [pro, setPro] = useState(false)
     const [orginalToken, setOrginalToken] = useState<string | null>(null);
     const [seller, setseller] = useState(false)
@@ -15,6 +18,14 @@ const chat = () => {
     const router = useRouter();
     const localToken = localStorage.getItem('token');
     console.log(localToken, "token");
+    var token = localStorage.getItem('token'); 
+  if (!token) {
+    showAlert({
+      title: 'Oops...',
+      text: 'You are not login',
+    });
+    router.push("/")
+  }
     useEffect(() => {
         const fetchData = async () => {
             if (typeof window !== 'undefined') {
@@ -50,7 +61,9 @@ const chat = () => {
     }
     return (
         <div>
-            <Button onClick={renderProfile}>profile</Button>
+            <Button onClick={renderProfile} className='round-image-chat-button'>
+            <img src={users?.profilePic} alt="User Avatar" className='round-image-chat'/>
+            </Button>
             {pro ? <Profile setPro={setPro}/> : <Sidebar />}
         </div>
     );
