@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import Chat from '../components/Chat';
+import { useSelector } from 'react-redux';
 
 const Sidebar = () => {
+  const { users } = useSelector((state: any) => state.user);
+
   const aa = [
     { name: "abc", img: "pppp" },
     { name: "abc1", img: "pppp1" },
@@ -16,6 +19,8 @@ const Sidebar = () => {
   };
 
   return (
+    <>
+   
     <div className="sidebar">
       <div className="sidebar-users">
         {aa.map((user, index) => (
@@ -30,19 +35,14 @@ const Sidebar = () => {
           </div>
         ))}
       </div>
-      {selectedUser && (
-        <div className="selected-user-info">
-          <h3>Selected User:</h3>
-         {/**@ts-ignore */}
-          <p>Name: {selectedUser.name}</p>
-         {/**@ts-ignore */}
-          <p>Image: {selectedUser.img}</p>
-        </div>
-      )}
-      <div className='chat-container'>
-      <Chat/>
-      </div>
+    
+      
     </div>
+    <div className=''>
+
+      <Chat selectedUser={selectedUser}/>
+    </div>
+    </>
   );
 };
 

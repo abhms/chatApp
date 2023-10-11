@@ -8,6 +8,7 @@ import { setUsers } from '../../redux/slices/user';
 import { store } from "../../redux/store";
 import showAlert from '../../utils/swal';
 import { useSelector } from 'react-redux';
+import Chat from '@/components/Chat';
 
 const chat = () => {
     const { users } = useSelector((state: any) => state.user);
@@ -61,10 +62,11 @@ const chat = () => {
     }
     return (
         <div>
-            <Button onClick={renderProfile} className='round-image-chat-button'>
-            <img src={users?.profilePic} alt="User Avatar" className='round-image-chat'/>
-            </Button>
+            <button className='round-image-chat-button'>
+            <img src={users?.profilePic} alt="User Avatar" className='round-image-chat' onClick={renderProfile} style={{ cursor: "pointer" }} />
+            </button>
             {pro ? <Profile setPro={setPro}/> : <Sidebar />}
+            {/* <Chat/> */}
         </div>
     );
 };
