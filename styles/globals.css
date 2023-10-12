@@ -325,7 +325,7 @@ img {
   border-radius: 8px;
   padding: 8px 16px;
   margin: 4px;
-  max-width: 70%; 
+  width: 153px;
   word-wrap: break-word;
 }
 
@@ -333,12 +333,25 @@ img {
   align-self: flex-end;
   background-color: #007bff; 
   color: #fff; 
+  position: absolute;
+  right: 87px;
+}
+
+.allsent{
+  position: relative;
+  padding-bottom: 18px;
+  margin-bottom: 13px !important;
+  left: 823px;
+  top: 22px;
 }
 
 .received-message {
   align-self: flex-start;
   background-color: #f0f0f0; 
   color: #333;
+  /* right:0px !important; */
+  position: absolute;
+  left: 422px;
 }
 
 .message-input {
@@ -350,4 +363,33 @@ img {
   position: absolute;
   left: 420px;
   top: 2px;
+}
+.inputchat{
+  width: 130vh;
+}
+
+.inputmessage {
+  flex: 1;
+  padding: 15px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 88%; /* Increase the width to 100% to make it wider */
+}
+
+/* Style for the Send button */
+.button-send {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button-send:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
