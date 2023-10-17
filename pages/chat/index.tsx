@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Sidebar from '../../components/Sidebar';
 import Profile from '@/components/Profile';
 import { Button } from '@mui/material';
@@ -9,6 +9,7 @@ import { store } from "../../redux/store";
 import showAlert from '../../utils/swal';
 import { useSelector } from 'react-redux';
 import Chat from '@/components/Chat';
+import { io, Socket } from 'socket.io-client';
 
 const chat = () => {
     const { users } = useSelector((state: any) => state.user);
@@ -16,7 +17,8 @@ const chat = () => {
     const [orginalToken, setOrginalToken] = useState<string | null>(null);
     const [seller, setseller] = useState(false)
     const [search, setSearch] = useState("")
-    const router = useRouter();
+  const socket = useRef();
+  const router = useRouter();
     const localToken = localStorage.getItem('token');
     console.log(localToken, "token");
     var token = localStorage.getItem('token'); 
@@ -26,7 +28,31 @@ const chat = () => {
       text: 'You are not login',
     });
     router.push("/")
-  }
+  }  
+  // useEffect(() => {
+  //   const socket: Socket = io("http://localhost:3001"); 
+
+  //   socket.on('connect', () => {
+  //     console.log('Connected to chat server');
+  //   });
+
+  //   socket.on('message', (message: string) => {
+  //    console.log(message,"backend message");
+  //   });
+  //   socket.emit('chat message', 'Hello, Server!');
+  
+  //   // Listen for messages from the server
+  //   socket.on('chat_message', (msg) => {
+  //     console.log('Received: ' + msg);
+  //   });
+  //   socket.on('disconnect', () => {
+  //     console.log('Disconnected from chat server');
+  //   });
+
+  //   return () => {
+  //     socket.disconnect();
+  //   };
+  // }, []);
     useEffect(() => {
         const fetchData = async () => {
             if (typeof window !== 'undefined') {

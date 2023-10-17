@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 import { setUsers } from '../redux/slices/user';
 import showAlert from '../utils/swal';
 import { useDispatch } from 'react-redux';
@@ -25,9 +26,17 @@ const Profile = ({ setPro }: { setPro: any }) => {
   }
   const handleLogout = () => {
     localStorage.removeItem('token');
-    dispatch(setUsers(""));
     router.push('/');
+    dispatch(setUsers(""));
   };
+useEffect(()=>{
+const aa=async()=>{
+  const axi=await axios("/api/hello")
+  console.log(axi,"zzz");
+}
+aa()
+},[])
+
   return (
     <div className="user-profile">
       <FontAwesomeIcon icon={faArrowLeft} size="2x" className="arrow-icon" onClick={() => setPro(false)} style={{ cursor: "pointer" }} />

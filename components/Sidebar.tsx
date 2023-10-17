@@ -20,28 +20,25 @@ const Sidebar = () => {
 
   return (
     <>
-   
-    <div className="sidebar">
-      <div className="sidebar-users">
-        {aa.map((user, index) => (
-          <div className="user" key={index}>
-            <div className="circle"></div>
-            <div className="user-info">
-              <button className="user-button" onClick={() => handleUserClick(user)}>
-                <span>{user.name}</span>
-                <img src={user.img} alt={user.name} />
-              </button>
+      <div className="sidebar">
+        <div className="sidebar-users">
+          {aa.map((user, index) => (
+            <div className="user" key={index}>
+              <div className="circle"></div>
+              <div className="user-info">
+                <button className="user-button" onClick={() => handleUserClick(user)}>
+                  <span>{user.name}</span>
+                  <img src={user.img} alt={user.name} />
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    
-      
-    </div>
-    <div className=''>
 
-      <Chat selectedUser={selectedUser}/>
-    </div>
+      <div className=''>
+        {selectedUser && <Chat selectedUser={selectedUser} />}
+      </div>
     </>
   );
 };
