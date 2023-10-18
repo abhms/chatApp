@@ -14,7 +14,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     io = new Server(httpServer, {
       cors: {
-        origin: 'http://localhost:3000',
+        origin: "http://localhost:3000/",
         methods: ["GET", "POST"]
       },
     });
@@ -31,7 +31,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       });
     });
 
-    httpServer.listen(8000); 
+    httpServer.listen(3001, () => {
+      console.log('Server is running on port 3001');
+    });
   }
 
   res.status(200).json({ message: 'Socket.io server running' });

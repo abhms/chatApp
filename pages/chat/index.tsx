@@ -90,6 +90,7 @@ const chat = () => {
         <div>
             <button className='round-image-chat-button'>
             <img src={users?.profilePic} alt="User Avatar" className='round-image-chat' onClick={renderProfile} style={{ cursor: "pointer" }} />
+            <h3 className='round-image-chat'>{users?.firstname}{users?.lastname}</h3>
             </button>
             {pro ? <Profile setPro={setPro}/> : <Sidebar />}
             {/* <Chat/> */}

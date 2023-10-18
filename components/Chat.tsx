@@ -1,91 +1,59 @@
 import React, { useEffect, useRef, useState } from 'react';
-import io from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 interface Message {
   text: string;
   type: 'sent' | 'received';
 }
 
 const Chat = (selectedUser: any) => {
+  const { users } = useSelector((state: any) => state.user);
+
   const [messages, setMessages] = useState<Message[]>([]);
   const [messageText, setMessageText] = useState('');
   const [isSendButtonEnabled, setIsSendButtonEnabled] = useState(false);
-  const [receive_message,setreceive_message]=useState()
+  const [receive_message, setreceive_message] = useState()
   // const socket = useRef();
-  const socket = io("http://localhost:8000"); 
-  console.log(socket,"sockettt")
-  const socketRef = useRef()
-  // useEffect(() => {
-  //   //@ts-ignore 
-  //   // if(socket.connected){
+  const socket: Socket = io();
+  async function socketInitializer() {
+    await fetch("/api/chat/socket");
 
-  //   socket.on('connect', () => {
-  //     console.log('Connected to chat server');
-  //   });
-
-  //   socket.on('message', (message: string) => {
-  //     const newMessage: Message = { text: message, type: 'received' };
-  //     setMessages([...messages, newMessage]);
-  //   });
-
-  //   socket.on('disconnect', () => {
-  //     console.log('Disconnected from chat server');
-  //   });
-  // // }
-
-  //   return () => {
-  //     socket.disconnect();
-  //   };
-  // }, []);
-
- useEffect(() => {
-    // Listen for 'message' events from the server
-    socket.on('message', (message) => {
-      // Update the state to display the received message
-      console.log(message,"backendmessage");
+    console.log(socket, "sosooso");
+    socket.on("receive-message", (data) => {
+      console.log(data, "this is received message");
     });
-    socket.on("messageusingemail",(msg)=>{
-      console.log(msg,"messageusingemail");
-    })
+  }
 
-    // Clean up the event listener when the component unmounts
-    // return () => {
-    //   socket.off('message');
-    //   socket.off('messageusingemail');
-    // };
-  }, [messages]);
+  useEffect(() => {
+    socketInitializer()
+  }, [])
 
 
-  const handleSendMessage = async() => {
+  const handleSendMessage = async () => {
     if (messageText) {
       const newMessage: Message = { text: messageText, type: 'sent' };
       setMessages([...messages, newMessage]);
-  
-      // Send the message to the backend
       sendmessage()
-      // if (socket.current) {
-      //   //@ts-ignore
-      //   socket.current.emit('message', newMessage.text);
-      // }
-      // const targetSocketId = 'TARGET_USER_SOCKET_ID';
-      // socket.emit('message', newMessage.text, targetSocketId);
-      // Clear the input field and disable the send button
       setMessageText('');
       setIsSendButtonEnabled(false);
     }
   };
-const sendmessage=async()=>{
+  const email=users?.email
+  const receiver=selectedUser?.selectedUser?.name
+  const sendmessage = async () => {
+    console.log(messageText, "selectedUser444444444");
+    socket.emit("send-message", {messageText,receiver,email});
+  }
 
-  // socket.emit("message","hello",socket.id)
-  
-}
+  console.log(messages, "messageTextmessageText", messageText);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const text = e.target.value;
     setMessageText(text);
     setIsSendButtonEnabled(!!text);
   };
 
-  console.log(receive_message, "selectedUser");
+  console.log(messageText, "selectedUser");
 
   return (
     <div className='chatt'>

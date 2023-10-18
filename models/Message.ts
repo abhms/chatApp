@@ -3,12 +3,11 @@ import mongoose  from './db';
 
 
 const ChatSchema = new mongoose.Schema({
-    firstname: String,
-    lastname:String,
-    email: String,
-    password: String,
-    profilePic:String
+    sender: String,
+    receiver:String,
+    message: String,
   },
+  
   {
     timestamps: true,
   });
