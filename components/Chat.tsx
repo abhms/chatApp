@@ -59,8 +59,8 @@ const Chat = (selectedUser: any) => {
     <div className='chatt'>
       <div className="chat-container">
         <div className="chat-header">
-          <img src={selectedUser?.selectedUser?.img} alt="Receiver Avatar" className="receiver-avatar" />
-          <h2>{selectedUser?.selectedUser?.name}</h2>
+          <img src={selectedUser?.selectedUser?.profilePic} alt="Receiver Avatar" className="receiver-avatar" />
+          <h2>{selectedUser?.selectedUser?.firstname} {selectedUser?.selectedUser?.lastname}</h2>
         </div>
         <div className="chat-messages">
           <div className="message-scroll">

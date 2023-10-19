@@ -393,3 +393,36 @@ img {
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+.user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-image {
+  margin-right: 10px; /* Add margin between image and user info */
+  width: 50px; /* Adjust the width as needed */
+  height: 50px; /* Adjust the height as needed */
+  border: 2px solid #ccc; /* Add a border to the image */
+  border-radius: 50%; /* Make the image round */
+  overflow: hidden; /* Clip image overflow */
+}
+
+.user-info {
+  flex: 1; /* Take up the remaining space */
+}
+.user:hover {
+  background-color: #f0f0f0; /* Change the background color on hover */
+  cursor: pointer; /* Change the cursor to a pointer on hover */
+}
+
+/* Add a line between user elements */
+.user + .user {
+  border-top: 1px solid #ccc;
+  padding-top: 10px; /* Adjust the padding as needed */
+}
+.img{
+  width: 50px; /* Adjust the width as needed */
+  height: 50px;
+}
