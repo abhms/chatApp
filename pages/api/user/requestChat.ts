@@ -15,7 +15,6 @@ export default async function getUserHandler(
             if (!token) {
                 return res.status(401).json({ error: 'Authorization token missing' });
             }
-
             const decodedToken = jwt.verify(token, secretKey) as { userId: string };
 
             const user = await User.findById(decodedToken.userId);

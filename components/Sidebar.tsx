@@ -3,14 +3,23 @@ import Chat from '../components/Chat';
 import { useSelector } from 'react-redux';
 import allUser from "../utils/allUser";
 import Box from '@mui/material/Box';
+import { useDispatch } from 'react-redux';
 import CircularProgress from '@mui/material/CircularProgress';
+import getApproval from '@/utils/getApproval';
+import { setAooroved } from '../redux/slices/approved';
+
 const Sidebar = () => {
+  const dispatch = useDispatch();
   const { users } = useSelector((state: any) => state.user);
   const [userData, setUserData] = useState([]);
   const [progress, setProgress] = React.useState(0);
+  // const [token, setOrginalToken] = useState<string | null>(null);
   const [selectedUser, setSelectedUser] = useState(null);
-
-  
+  // useEffect(() => {
+  //   const tkn = localStorage.getItem('token');
+  //   setOrginalToken(tkn);
+  // }, [])
+  // console.log(token,"thisi is token");
   useEffect(() => {
     allUser().then((data) => {
       setUserData(data);
@@ -21,7 +30,15 @@ const Sidebar = () => {
 
   console.log(userData, "userData");
 
-
+useEffect(()=>{
+  const token = localStorage.getItem('token');
+  const getapp=async()=>{
+   const aaaa=await getApproval(token)
+   console.log(aaaa,"aaaaaaaaaaaaaaa");
+   dispatch(setAooroved(aaaa));
+  }
+  getapp()
+},[])
   const handleUserClick = (user: any) => {
     setSelectedUser(user);
   };

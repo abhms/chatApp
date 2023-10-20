@@ -2,14 +2,28 @@ import React, { useEffect, useRef, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import getApproval from "@/utils/getApproval"
 interface Message {
   text: string;
   type: 'sent' | 'received';
 }
-
+interface Messagess {
+  createdAt: string;
+  receiver: string;
+  sender: string;
+  status: string;
+  updatedAt: string;
+  __v: number;
+  _id: string;
+}
 const Chat = (selectedUser: any) => {
   const { users } = useSelector((state: any) => state.user);
-
+  const { approve } = useSelector((state: any) => state.approved)
+  const matchedMessage = approve.find(
+    (message: Messagess) =>
+      message.receiver === selectedUser?.selectedUser?.email
+  );
+  console.log(matchedMessage, "apprrprp", selectedUser?.selectedUser?.email);
   const [messages, setMessages] = useState<Message[]>([]);
   const [messageText, setMessageText] = useState('');
   const [isSendButtonEnabled, setIsSendButtonEnabled] = useState(false);
@@ -39,11 +53,11 @@ const Chat = (selectedUser: any) => {
       setIsSendButtonEnabled(false);
     }
   };
-  const email=users?.email
-  const receiver=selectedUser?.selectedUser?.name
+  const email = users?.email
+  const receiver = selectedUser?.selectedUser?.name
   const sendmessage = async () => {
     console.log(messageText, "selectedUser444444444");
-    socket.emit("send-message", {messageText,receiver,email});
+    socket.emit("send-message", { messageText, receiver, email });
   }
 
   console.log(messages, "messageTextmessageText", messageText);
@@ -74,18 +88,30 @@ const Chat = (selectedUser: any) => {
             ))}
           </div>
         </div>
-        <div className="message-input">
+        {!matchedMessage ? <button className="button-send">send</button> : matchedMessage.status === "pending" ? <h3>Pending</h3> : matchedMessage.status === "received" ? <h3>Rreceived</h3> : <div className="message-input">
           <input
             type="text"
             placeholder="Type a message..."
             value={messageText}
-            className='inputmessage' // Apply the inputmessage style here
+            className='inputmessage'
             onChange={handleInputChange}
           />
           <button onClick={handleSendMessage} disabled={!isSendButtonEnabled} className="button-send">
             Send
           </button>
-        </div>
+        </div>}
+        {/* <div className="message-input">
+          <input
+            type="text"
+            placeholder="Type a message..."
+            value={messageText}
+            className='inputmessage'
+            onChange={handleInputChange}
+          />
+          <button onClick={handleSendMessage} disabled={!isSendButtonEnabled} className="button-send">
+            Send
+          </button>
+        </div> */}
       </div>
     </div>
   );

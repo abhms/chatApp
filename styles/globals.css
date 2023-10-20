@@ -426,3 +426,8 @@ img {
   width: 50px; /* Adjust the width as needed */
   height: 50px;
 }
+
+.chat-container{
+  position: fixed;
+  bottom: -5px;
+}
