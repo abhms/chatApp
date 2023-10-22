@@ -23,7 +23,9 @@ export default async function getUserHandler(
                 return res.status(404).json({ error: 'User not found' });
             }
             const allApp = await Approved.find({ sender: user.email })
-            res.status(201).json(allApp)
+            const sendApproved=await Approved.find({receiver:user.email})
+            const allData={allApp,sendApproved}
+            res.status(201).json(allData)
         } catch (error) {
             res.status(500).json({ error: 'An internal server error occurred' });
         }
@@ -60,7 +62,7 @@ export default async function getUserHandler(
                     status: status,
                 });
                 await newApproved.save();
-                res.status(201).json(newApproved);
+                res.status(201).json({message:"Done",newApproved});
             }
         } catch (error) {
             res.status(500).json({ error: 'An internal server error occurred' });
