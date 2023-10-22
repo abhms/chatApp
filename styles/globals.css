@@ -52,15 +52,16 @@ img {
 
 
 .chatfire {
-  letter-spacing: -5px !important; /* Adjust letter spacing as needed */
-  color: white !important; /* Set your desired text color */
-  font-weight: bold !important; /* Optionally set font weight */
-  text-decoration: none !important; /* Remove text decoration for the link */
+  letter-spacing: -5px !important;
+  color: white !important;
+  font-weight: bold !important;
+  text-decoration: none !important;
 }
 
 .chatfire:hover {
-  text-decoration: underline !important; /* Add underline on hover if needed */
+  text-decoration: underline !important;
 }
+
 .chatKaro {
   background: linear-gradient(45deg, #F36F45 50%, #fff 50%) !important;
   background-clip: text !important;
@@ -158,7 +159,7 @@ img {
 }
 
 .h1-right-margin {
-  margin-left: 60px; 
+  margin-left: 60px;
   margin-top: 40px;
 }
 
@@ -166,7 +167,7 @@ img {
 
 .user-profile {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   background-color: #eae6df;
   width: 25rem;
@@ -180,7 +181,7 @@ img {
   border-radius: 50%;
   overflow: hidden;
   margin-bottom: 20px;
-  margin-top: 20px; 
+  margin-top: 20px;
 }
 
 .user-avatar img {
@@ -193,50 +194,52 @@ img {
   font-size: 24px;
   font-weight: bold;
   margin-top: 10;
-  text-align: center; 
-  color:#010910
+  text-align: center;
+  color: #010910
 }
 
 .user-email {
   font-size: 16px;
   margin-top: 10;
-  text-align: center; 
-  color:#010910
-
+  text-align: center;
+  color: #010910
 }
 
 .arrow-icon {
-  color: black; 
-  margin-right: 170px; 
+  color: black;
+  margin-right: 170px;
   margin-top: 20px;
 }
 
 .user-profile {
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
 }
 
 .arrow-icon {
   color: black;
   margin-right: 16rem;
 }
-.profiletext{
+
+.profiletext {
   color: black !important;
   margin-right: 7rem !important;
   margin-top: -2.2rem !important;
 }
 
-.saveButton{
+.saveButton {
   margin-top: 15px;
   right: 1px;
 }
-.round-image-chat-button{
+
+.round-image-chat-button {
   background-color: #eae6df !important;
   width: 400px;
   height: 100px;
   margin-left: 20px !important;
-  border-radius:10px
+  border-radius: 10px
 }
+
 .round-image-chat {
   width: 60px;
   height: 60px;
@@ -249,7 +252,6 @@ img {
 .chat-container {
   display: flex;
   flex-direction: column;
-  /* max-width: 300px;  */
   margin: 0 auto;
 }
 
@@ -257,36 +259,34 @@ img {
   border-radius: 8px;
   padding: 8px 16px;
   margin: 4px;
-  max-width: 70%; 
+  max-width: 70%;
   word-wrap: break-word;
 }
 
 .sent-message {
   align-self: flex-end;
-  background-color: #007bff; 
-  color: #fff; 
+  background-color: #007bff;
+  color: #fff;
 }
 
 .received-message {
   align-self: flex-start;
-  background-color: #f0f0f0; 
-  color: #333; 
+  background-color: #f0f0f0;
+  color: #333;
 }
 
 .chat-container {
   display: flex;
   flex-direction: column;
-  /* max-width: 300px;  */
-  width:1090px !important;
+  width: 1090px !important;
   margin: 0 auto;
-  align-self: flex-end; 
+  align-self: flex-end;
 }
 
 /* Chat.css */
 .chat-container {
   display: flex;
   flex-direction: column;
-  /* width: 400px;  */
   margin: 0;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -300,8 +300,8 @@ img {
   display: flex;
   align-items: center;
   padding: 8px;
-  background-color: #007bff; 
-  color: #fff; 
+  background-color: #007bff;
+  color: #fff;
 }
 
 .receiver-avatar {
@@ -331,13 +331,13 @@ img {
 
 .sent-message {
   align-self: flex-end;
-  background-color: #007bff; 
-  color: #fff; 
+  background-color: #007bff;
+  color: #fff;
   position: absolute;
   right: 87px;
 }
 
-.allsent{
+.allsent {
   position: relative;
   padding-bottom: 18px;
   margin-bottom: 13px !important;
@@ -347,9 +347,8 @@ img {
 
 .received-message {
   align-self: flex-start;
-  background-color: #f0f0f0; 
+  background-color: #f0f0f0;
   color: #333;
-  /* right:0px !important; */
   position: absolute;
   left: 422px;
 }
@@ -359,12 +358,13 @@ img {
   background-color: #f0f0f0;
 }
 
-.chatcomp{
+.chatcomp {
   position: absolute;
   left: 420px;
   top: 2px;
 }
-.inputchat{
+
+.inputchat {
   width: 130vh;
 }
 
@@ -375,7 +375,7 @@ img {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
-  width: 88%; /* Increase the width to 100% to make it wider */
+  width: 88%;
 }
 
 /* Style for the Send button */
@@ -401,38 +401,44 @@ img {
 }
 
 .user-image {
-  margin-right: 10px; /* Add margin between image and user info */
-  width: 50px; /* Adjust the width as needed */
-  height: 50px; /* Adjust the height as needed */
-  border: 2px solid #ccc; /* Add a border to the image */
-  border-radius: 50%; /* Make the image round */
-  overflow: hidden; /* Clip image overflow */
+  margin-right: 10px;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  overflow: hidden;
+
 }
 
 .user-info {
-  flex: 1; /* Take up the remaining space */
+  flex: 1;
+
 }
+
 .user:hover {
-  background-color: #f0f0f0; /* Change the background color on hover */
-  cursor: pointer; /* Change the cursor to a pointer on hover */
+  background-color: #f0f0f0;
+  cursor: pointer;
+
 }
 
 /* Add a line between user elements */
-.user + .user {
+.user+.user {
   border-top: 1px solid #ccc;
-  padding-top: 10px; /* Adjust the padding as needed */
+  padding-top: 10px;
+
 }
-.img{
-  width: 50px; /* Adjust the width as needed */
+
+.img {
+  width: 50px;
   height: 50px;
 }
 
-.chat-container{
+.chat-container {
   position: fixed;
-  bottom: -5px;
+  bottom: -2px;
 }
 
-.disableText{
+.disableText {
   position: fixed;
   bottom: 33px;
   left: 60% !important;
@@ -440,10 +446,11 @@ img {
   right: 50% !important;
   text-align: center;
   background-color: #3bcc1b;
-  height:30px;
+  height: 30px;
   font-family: sans-serif;
 }
-.actionButton{
+
+.actionButton {
   position: fixed;
   bottom: 33px;
   left: 60% !important;
@@ -455,12 +462,12 @@ img {
   cursor: pointer;
 }
 
-.searchbox{
+.searchbox {
   width: 100%;
-    height: 24px;
-    border-radius: 10px;
-    padding: 3px;
-    border: 3px solid #ccc;
-    font-size: 16px;
-
+  height: 24px;
+  border-radius: 10px;
+  padding: 3px;
+  border: 3px solid #ccc;
+  font-size: 16px;
+  background-color: #d1d7db
 }

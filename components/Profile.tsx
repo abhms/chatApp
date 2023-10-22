@@ -52,7 +52,7 @@ aa()
       <div className='saveButton'>
 
         <Stack spacing={2} direction="row">
-          <Button variant="contained" className='saveButton'>Save</Button>
+          <Button variant="contained" className='saveButton'>Edit</Button>
         </Stack>
         <Tooltip title="Logout">
           <IconButton>

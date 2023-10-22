@@ -8,15 +8,14 @@ import { setUsers } from '../../redux/slices/user';
 import { store } from "../../redux/store";
 import showAlert from '../../utils/swal';
 import { useSelector } from 'react-redux';
-import Chat from '@/components/Chat';
 import { io, Socket } from 'socket.io-client';
 
-const chat = () => {
-    const { users } = useSelector((state: any) => state.user);
-    const [pro, setPro] = useState(false)
-    const [orginalToken, setOrginalToken] = useState<string | null>(null);
-    const [seller, setseller] = useState(false)
-    const [search, setSearch] = useState("")
+const Chat: React.FC = () => {
+  const { users } = useSelector((state: any) => state.user);
+  const [pro, setPro] = useState(false);
+  const [orginalToken, setOrginalToken] = useState<string | null>(null);
+  const [seller, setseller] = useState(false);
+  const [search, setSearch] = useState("");
   const socket = useRef();
   const router = useRouter();
     const localToken = localStorage.getItem('token');
@@ -98,4 +97,4 @@ const chat = () => {
     );
 };
 
-export default chat;
+export default Chat;

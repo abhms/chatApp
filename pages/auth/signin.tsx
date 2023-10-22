@@ -5,45 +5,46 @@ import Link from 'next/link';
 import { Button } from '@mui/material';
 import Navbar from '@/components/Navbar';
 
-async function signIn(email: string, password: string) {
-    const response = await fetch('/api/auth/signin', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-    });
-    const data = await response.json();
-    console.log(data, 'data');
-    if (response.ok) {
-        const { token } = data;
-        localStorage.setItem('token', token);
-        return true;
-    } else {
-        console.error(data.error);
-        return false;
-    }
-}
 
-const signin: React.FC = () => {
+
+const Signin: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter();
-    console.log(email,"eeeee");
+
     useEffect(() => {
         const localToken = localStorage.getItem('token');
         if (localToken) {
             router.push('/chat');
         }
     }, [router]);
-
+    const signIn = async (email:string, password:string) => {
+        const response = await fetch('/api/auth/signin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+        const data = await response.json();
+        console.log(data, 'data');
+        if (response.ok) {
+            const { token } = data;
+            localStorage.setItem('token', token);
+            return true;
+        } else {
+            console.error(data.error);
+            return false;
+        }
+    }
+    
     const handleSignIn = async (e: React.FormEvent) => {
         e.preventDefault();
         const success = await signIn(email, password);
         if (success) {
             router.push('/chat');
         }
-    }
+    };
     return (
         <>
         <Navbar/>
@@ -94,4 +95,4 @@ const signin: React.FC = () => {
     );
 };
 
-export default signin
+export default Signin
