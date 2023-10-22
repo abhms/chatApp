@@ -4,8 +4,35 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Button } from '@mui/material';
 import Navbar from '@/components/Navbar';
+import axios from 'axios';
 
+interface ApiResponse {
+    token: string;
+    error?: string;
+}
 
+const signIn = async (email: string, password: string) => {
+    try {
+        const response = await axios.post<ApiResponse>('/api/auth/signin', {
+            email,
+            password,
+        });
+
+        const data = response.data;
+
+        if (response.status === 200) {
+            const { token } = data;
+            localStorage.setItem('token', token);
+            return true;
+        } else {
+            console.error(data.error);
+            return false;
+        }
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+};
 
 const Signin: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -18,26 +45,7 @@ const Signin: React.FC = () => {
             router.push('/chat');
         }
     }, [router]);
-    const signIn = async (email:string, password:string) => {
-        const response = await fetch('/api/auth/signin', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        });
-        const data = await response.json();
-        console.log(data, 'data');
-        if (response.ok) {
-            const { token } = data;
-            localStorage.setItem('token', token);
-            return true;
-        } else {
-            console.error(data.error);
-            return false;
-        }
-    }
-    
+
     const handleSignIn = async (e: React.FormEvent) => {
         e.preventDefault();
         const success = await signIn(email, password);
