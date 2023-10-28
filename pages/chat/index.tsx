@@ -9,7 +9,6 @@ import { store } from "../../redux/store";
 import showAlert from '../../utils/swal';
 import { useSelector } from 'react-redux';
 import { io, Socket } from 'socket.io-client';
-
 const Chat: React.FC = () => {
   const { users } = useSelector((state: any) => state.user);
   const [pro, setPro] = useState(false);

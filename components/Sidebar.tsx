@@ -113,7 +113,7 @@ const Sidebar = () => {
       </div>
 
       <div className="">
-        {selectedUser && <Chat selectedUser={selectedUser} />}
+        {selectedUser && <Chat selectedUser={selectedUser} />}        
       </div>
     </>
   );

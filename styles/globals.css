@@ -350,7 +350,7 @@ img {
   background-color: #f0f0f0;
   color: #333;
   position: absolute;
-  left: 422px;
+  left:4px;
 }
 
 .message-input {
@@ -470,4 +470,14 @@ img {
   border: 3px solid #ccc;
   font-size: 16px;
   background-color: #d1d7db
+}
+
+.videocall{
+  position: fixed;
+  right: 135px;
+}
+.moreheader{
+  position: fixed;
+  right: 100px;
+  top:33px
 }
