@@ -82,6 +82,10 @@ export default function SocketHandler(req, res) {
         console.error("Error sending private message:", error);
       }
     });
+    socket.on('disconnect', () => {
+      allusers = allusers.filter(user => user.socketId !== socket.id);
+      io.emit('getallusers', allusers);
+  });
   });
 
   console.log("Setting up socket");

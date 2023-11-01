@@ -36,7 +36,7 @@ const aa=async()=>{
 }
 aa()
 },[])
-
+console.log(setPro,"setPro");
   return (
     <div className="user-profile">
       <FontAwesomeIcon icon={faArrowLeft} size="2x" className="arrow-icon" onClick={() => setPro(false)} style={{ cursor: "pointer" }} />

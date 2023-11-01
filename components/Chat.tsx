@@ -9,7 +9,13 @@ import VideocamIcon from '@mui/icons-material/Videocam';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-
+import '@livekit/components-styles';
+import {
+  LiveKitRoom,
+  VideoConference,
+  GridLayout,
+  ParticipantTile,
+} from '@livekit/components-react';
 interface Message {
   text: string;
   type: 'sent' | 'received';
@@ -36,6 +42,9 @@ const Chat = (selectedUser: any) => {
   const [receivedMessages, setReceivedMessages] = useState<Message[]>([]);
   const [receive_message, setReceiveMessage] = useState('');
   const token = localStorage.getItem('token');
+  const room = "quickstart-room";
+  const name = "quickstart-user";
+  const [tokens, setTokens] = useState("");
 
   // Define the room name
   const roomName = "YourRoomName"; // Replace with your desired room name
@@ -60,6 +69,11 @@ const Chat = (selectedUser: any) => {
       console.log(data, "getMessagegetMessage");
     })
   }, [])
+    useEffect(()=>{
+      socket?.on('getMessage', data => {
+        console.log(data, "get98888888getMessage");
+      })
+    },[socket])
 
   async function socketInitializer() {
     await fetch("/api/chat/socket");
@@ -79,6 +93,12 @@ const Chat = (selectedUser: any) => {
       }
     });
   }
+const [abc,setabc]=useState(false);
+console.log(abc,"abccc");
+const sonu=abc?"gb":null
+const aa=abc?"raam":abc===false?"bcd":"raam"
+// const aa=abc && "bcd"
+console.log(sonu,"sonu",);
 
   useEffect(() => {
     socketInitializer();
@@ -108,7 +128,7 @@ const Chat = (selectedUser: any) => {
       setMessages([...messages, newMessage]);
       // Remove these lines to keep the button enabled after sending a message
       // setMessageText('');
-      // setIsSendButtonEnabled(false);
+      setIsSendButtonEnabled(false);
       sendmessage();
     }
   };
@@ -120,6 +140,7 @@ const Chat = (selectedUser: any) => {
   const sendmessage = async () => {
     // Include the room name when emitting the message
     socket.emit("sendmessage", { messageText, receiver, _id });
+    console.log("object89101");
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -127,7 +148,7 @@ const Chat = (selectedUser: any) => {
     setMessageText(text);
     setIsSendButtonEnabled(!!text);
   }
-  console.log(roomMessages, "roomMessagesroomMessages", messages);
+  console.log(roomMessages, "roomMessagesroomMessages", receivedMessages);
 
   return (
     <div className='chatt'>
