@@ -16,6 +16,7 @@ import {
   GridLayout,
   ParticipantTile,
 } from '@livekit/components-react';
+import Video from './video';
 interface Message {
   text: string;
   type: 'sent' | 'received';
@@ -45,7 +46,11 @@ const Chat = (selectedUser: any) => {
   const room = "quickstart-room";
   const name = "quickstart-user";
   const [tokens, setTokens] = useState("");
+  const [videocall, setVideoCall] = useState(false);
 
+  const toggleVideoCallCopmonent = () => {
+    setVideoCall(!videocall);
+  };
   // Define the room name
   const roomName = "YourRoomName"; // Replace with your desired room name
   console.log(selectedUser?.selectedUser?._id, "selelelelle");
@@ -158,11 +163,14 @@ console.log(sonu,"sonu",);
           <h2>{selectedUser?.selectedUser?.firstname} {selectedUser?.selectedUser?.lastname}</h2>
           <div className="videocall">
             {users.email !== selectedUser?.selectedUser?.email ? (
+              <>
               <Tooltip title="Video call">
-                <IconButton>
+                <IconButton onClick={toggleVideoCallCopmonent}>
                   <VideocamIcon className="videocall" fontSize="large" style={{ color: 'white' }} />
                 </IconButton>
               </Tooltip>
+              {videocall && <Video id={selectedUser?.selectedUser?._id} />}
+              </>
             ) : null}
           </div>
           <div className='moreheader'>

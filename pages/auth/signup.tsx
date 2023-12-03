@@ -214,7 +214,7 @@ const Signup: React.FC = () => {
           <Link href="/auth/signin" className='sign-in-button'>
             <button
               type="submit"
-              className="w-full px-4 py-2 text-white bg-gray-800 rounded-lg hover:bg-gray-900 focus:outline-none focus:bg-gray-600"
+              className="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600"
             >
               Sign In
             </button>

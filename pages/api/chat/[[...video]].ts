@@ -87,9 +87,10 @@ export default async function video(  req: NextApiRequest,
   console.log(at,"atttttttttt");
 //@ts-ignore
 //  const aw= at.addGrant({ room, roomJoin: true, canPublish: true, canSubscribe: true });
-const aw=at.addGrant({ roomJoin: true, room });
-console.log(aw,"awwww");
-  return res.json({ message:"token: at.toJwt()" });
+// const aw=at.addGrant({ roomJoin: true, room });
+const aw=at.addGrant({ room, roomJoin: true, canPublish: true, canSubscribe: true });
+console.log(at.toJwt(),"awwww",aw);
+  return res.json({ token: at.toJwt() });
   } catch (error) {
     res.status(500).json({ error: 'An internal server error occurred' });
     
