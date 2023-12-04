@@ -37,8 +37,7 @@ const Signup: React.FC = () => {
     }
   
     const formData1 = new FormData();
-  
-    // Append the selected image to the form data with a unique name
+
     formData1.append("file", selectedImage);
   
     formData1.append("upload_preset", "my-uploads");

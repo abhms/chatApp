@@ -9,7 +9,6 @@ const editUser=async(token:String,userData:any)=>{
         });
         const users = response.data.user
         return users
-        console.log(users);
     } catch (error) {
         console.error('Error fetching user data:', error);
     }

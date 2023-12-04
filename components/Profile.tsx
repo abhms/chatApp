@@ -14,13 +14,15 @@ import showAlert from "../utils/swal";
 import { useDispatch } from "react-redux";
 import editUser from "../utils/editUser";
 import { store } from "../redux/store";
+import UploadImg from "../utils/uploadImg";
 const Profile = ({ setPro }: { setPro: any }) => {
   const { users } = useSelector((state: any) => state.user);
   const router = useRouter();
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const [userData, setUserData] = useState(users);
-
+  const [image, setImage] = useState<File | null>(null);
+  const [imageTimestamp, setImageTimestamp] = useState<number>(Date.now());
   if (!token) {
     showAlert({
       title: "Oops...",
@@ -45,25 +47,42 @@ const Profile = ({ setPro }: { setPro: any }) => {
     });
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios("/api/hello");
-        console.log(response.data, "zzz");
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const selectedImage = e.target.files[0];
+      setImage(selectedImage);
+    }
+  };
 
   const handleEdit = async () => {
     const token = localStorage.getItem("token");
     if (token) {
-      const newUser = await editUser(token, userData);
-      store.dispatch(setUsers({ newUser }));
+      try {
+        var imageUrl;
+
+        const formData1 = new FormData();
+        //@ts-ignore
+        formData1.append("file", image);
+        formData1.append("upload_preset", "my-uploads");
+        if (image) {
+          imageUrl = await UploadImg(formData1);
+        }
+
+        const userDataToUpdate = {
+          firstname: userData.firstname,
+          lastname: userData.lastname,
+          email: userData.email,
+          profilePic: imageUrl,
+        };
+        const newUser = await editUser(token, userDataToUpdate);
+        store.dispatch(setUsers({ newUser }));
+        setImageTimestamp(Date.now());
+      } catch (error) {
+        console.error("Error editing user:", error);
+      }
     }
   };
+  console.log(imageTimestamp, "imageTimestamp");
   return (
     <div className="user-profile">
       <FontAwesomeIcon
@@ -75,8 +94,26 @@ const Profile = ({ setPro }: { setPro: any }) => {
       />
       <h1 className="profiletext">Profile</h1>
 
-      <div className="user-avatar">
-        <img src={users?.profilePic} alt="User Avatar" />
+      <div
+        className="user-avatar"
+        onClick={() => document.getElementById("imageInput")?.click()}
+        style={{ cursor: "pointer" }}
+      >
+        <img
+          src={
+            image
+              ? URL.createObjectURL(image)
+              : `${users?.profilePic}?t=${imageTimestamp}`
+          }
+          alt="User Avatar"
+        />
+        <input
+          type="file"
+          accept="image/*"
+          id="imageInput"
+          style={{ display: "none" }}
+          onChange={handleImageChange}
+        />
       </div>
       <div className="user-details">
         <input
