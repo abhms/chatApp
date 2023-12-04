@@ -23,6 +23,7 @@ const Profile = ({ setPro }: { setPro: any }) => {
   const [userData, setUserData] = useState(users);
   const [image, setImage] = useState<File | null>(null);
   const [imageTimestamp, setImageTimestamp] = useState<number>(Date.now());
+  const [isHovered, setIsHovered] = useState(false);
   if (!token) {
     showAlert({
       title: "Oops...",
@@ -97,6 +98,8 @@ const Profile = ({ setPro }: { setPro: any }) => {
       <div
         className="user-avatar"
         onClick={() => document.getElementById("imageInput")?.click()}
+        onMouseEnter={() => setIsHovered(true)} // Set isHovered to true on hover
+        onMouseLeave={() => setIsHovered(false)} // Set isHovered to false on leave
         style={{ cursor: "pointer" }}
       >
         <img
@@ -107,6 +110,9 @@ const Profile = ({ setPro }: { setPro: any }) => {
           }
           alt="User Avatar"
         />
+        {isHovered && (
+          <div className="change-photo-text">Change Profile Photo</div>
+        )}
         <input
           type="file"
           accept="image/*"

@@ -490,3 +490,22 @@ img {
   right: 100px;
   top:33px
 }
+.user-avatar {
+  position: relative;
+}
+
+.change-photo-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #000; 
+  padding: 8px;
+  border-radius: 4px;
+  display: none;
+}
+
+.user-avatar:hover .change-photo-text {
+  display: block;
+}
