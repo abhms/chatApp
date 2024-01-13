@@ -18,18 +18,18 @@ const signIn = async (email: string, password: string) => {
             password,
         });
 
-        const data = response.data;
+        const { data } = response;
 
         if (response.status === 200) {
             const { token } = data;
             localStorage.setItem('token', token);
             return true;
         } else {
-            console.error(data.error);
+            console.error("Server responded with an error:", data.error);
             return false;
         }
     } catch (error) {
-        console.error(error);
+        console.error("An error occurred during the request:", error);
         return false;
     }
 };

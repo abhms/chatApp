@@ -83,7 +83,6 @@ const Profile = ({ setPro }: { setPro: any }) => {
       }
     }
   };
-  console.log(imageTimestamp, "imageTimestamp");
   return (
     <div className="user-profile">
       <FontAwesomeIcon
@@ -98,8 +97,8 @@ const Profile = ({ setPro }: { setPro: any }) => {
       <div
         className="user-avatar"
         onClick={() => document.getElementById("imageInput")?.click()}
-        onMouseEnter={() => setIsHovered(true)} // Set isHovered to true on hover
-        onMouseLeave={() => setIsHovered(false)} // Set isHovered to false on leave
+        onMouseEnter={() => setIsHovered(true)} 
+        onMouseLeave={() => setIsHovered(false)} 
         style={{ cursor: "pointer" }}
       >
         <img
