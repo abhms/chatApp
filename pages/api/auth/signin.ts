@@ -19,6 +19,7 @@ export default async function handler(
         return res.status(401).json({ error: 'Incorrect Email Address' });
       }
 
+      
       const passwordMatch = await bcrypt.compare(password, user.password);
 
       if (!passwordMatch) {
