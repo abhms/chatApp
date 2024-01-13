@@ -19,7 +19,7 @@ export default async function handler(
         return res.status(401).json({ error: 'Incorrect Email Address' });
       }
 
-      
+
       const passwordMatch = await bcrypt.compare(password, user.password);
 
       if (!passwordMatch) {
@@ -30,7 +30,6 @@ export default async function handler(
         expiresIn: '8h',
       });
 
-      console.log(token, 'tototoo');
       res.status(200).json({ message: 'You are now logged in', token });
     } else {
       // Return 405 Method Not Allowed for non-POST requests

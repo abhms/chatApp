@@ -18,7 +18,6 @@ const Chat: React.FC = () => {
   const socket = useRef();
   const router = useRouter();
     const localToken = localStorage.getItem('token');
-    console.log(localToken, "token");
     var token = localStorage.getItem('token'); 
   if (!token) {
     showAlert({
